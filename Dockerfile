@@ -12,7 +12,7 @@ LABEL license="https://github.com/phnmnl/container-midcor/blob/master/License.tx
 LABEL tags="Metabolomics"
 
 # Install packages for compilation
-RUN apt-get -y update && apt-get -y --no-install-recommends install make gcc gfortran g++ libnetcdf-dev libxml2-dev libblas-dev liblapack-dev libssl-dev r-base-dev pkg-config git xorg xorg-dev libglu1-mesa-dev libgl1-mesa-dev && \
+RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install make gcc gfortran g++ libnetcdf-dev libxml2-dev libblas-dev liblapack-dev libssl-dev r-base-dev pkg-config git xorg xorg-dev libglu1-mesa-dev libgl1-mesa-dev && \
     R -e 'source("https://bioconductor.org/biocLite.R"); biocLite("multtest")' && \
     R -e 'install.packages(c("RColorBrewer","Hmisc","gplots","multcomp","rgl","mixOmics","vegan","ape","pvclust","dendextend","cba","nlme"), repos="https://mirrors.ebi.ac.uk/CRAN/")' && \
     apt-get -y --purge --auto-remove remove make gcc gfortran g++ libblas-dev liblapack-dev r-base-dev libssl-dev pkg-config git xorg-dev libglu1-mesa-dev libgl1-mesa-dev && \
