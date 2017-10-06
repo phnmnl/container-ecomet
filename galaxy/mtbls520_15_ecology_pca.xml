@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
-<tool id="mtbls520_08_species_features" name="mtbls520_08_species_features" version="0.1">
+<tool id="mtbls520_15_ecology_pca" name="mtbls520_15_ecology_pca" version="0.1">
   <requirements>
     <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
   </requirements>
-  <description>Calculate species total features from the MTBLS520 study.</description>
+  <description>Perform PCA on the data from the MTBLS520 study.</description>
   <command><![CDATA[
-mtbls520_08_species_features.r $infile1 $outfile1 2>&1;
+mtbls520_15_ecology_pca.r $infile1 $outfile1 2>&1;
 exit $?;
   ]]>
   </command>
@@ -14,7 +14,7 @@ exit $?;
     <param name="infile1" type="data" format="rdata" optional="False" label="Input Rdata file." />
   </inputs>
   <outputs>
-    <data name="outfile1" type="data" format="pdf" label="Species features PDF plot" />
+    <data name="outfile1" type="data" format="pdf" label="Species PCA PDF plot" />
   </outputs>
   <help><![CDATA[
 This is the MTBLS520 study.
