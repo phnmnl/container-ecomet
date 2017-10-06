@@ -19,8 +19,8 @@ RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-
     apt-get -y clean && apt-get -y autoremove && rm -rf /var/lib/{cache,log}/ /tmp/* /var/tmp/*
 
 # Add scripts to container
-ADD scripts/*.r /usr/local/bin/
-RUN chmod +x /usr/local/bin/*.r
+ADD scripts/* /usr/local/bin/
+RUN chmod +x /usr/local/bin/*
 
 # Add testing to container
 ADD runTest1.sh /usr/local/bin/runTest1.sh
