@@ -1,0 +1,136 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "Metabolights 520 Eco-Metabolomics Workflow", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "content_id": "mtbls520_05b_import_maf", 
+            "errors": null, 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "mtbls520_05b_import_maf", 
+            "outputs": [
+                {
+                    "name": "outfile1", 
+                    "type": "rdata"
+                }
+            ], 
+            "position": {
+                "left": 199.99998474121094, 
+                "top": 200
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_05b_import_maf", 
+            "tool_state": "{\"__page__\": null, \"__rerun_remap_job_id__\": null, \"infile2\": \"{\\\"values\\\": [{\\\"src\\\": \\\"hda\\\", \\\"id\\\": 4983}]}\", \"infile1\": \"{\\\"values\\\": [{\\\"src\\\": \\\"hda\\\", \\\"id\\\": 4991}]}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "uuid": "459e3ec2-b4b4-49c5-a2ee-0fca466ae5d9", 
+            "workflow_outputs": []
+        }, 
+        "1": {
+            "annotation": "", 
+            "content_id": "mtbls520_06_import_traits", 
+            "errors": null, 
+            "id": 1, 
+            "input_connections": {
+                "infile1": {
+                    "id": 0, 
+                    "output_name": "outfile1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "mtbls520_06_import_traits", 
+            "outputs": [
+                {
+                    "name": "outfile1", 
+                    "type": "rdata"
+                }
+            ], 
+            "position": {
+                "left": 244.99998474121094, 
+                "top": 337.99998474121094
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_06_import_traits", 
+            "tool_state": "{\"__page__\": null, \"__rerun_remap_job_id__\": null, \"infile2\": \"{\\\"values\\\": [{\\\"src\\\": \\\"hda\\\", \\\"id\\\": 4990}]}\", \"infile1\": \"{\\\"values\\\": [{\\\"src\\\": \\\"hda\\\", \\\"id\\\": 4991}]}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "uuid": "5b32de23-b55c-4ebd-89f2-5040aa3310dc", 
+            "workflow_outputs": []
+        }, 
+        "2": {
+            "annotation": "", 
+            "content_id": "mtbls520_07_species_diversity", 
+            "errors": null, 
+            "id": 2, 
+            "input_connections": {
+                "infile1": {
+                    "id": 1, 
+                    "output_name": "outfile1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "mtbls520_07_species_diversity", 
+            "outputs": [
+                {
+                    "name": "outfile1", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "outfile2", 
+                    "type": "rdata"
+                }
+            ], 
+            "position": {
+                "left": 360.49998474121094, 
+                "top": 469.99998474121094
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_07_species_diversity", 
+            "tool_state": "{\"__page__\": null, \"__rerun_remap_job_id__\": null, \"infile1\": \"{\\\"values\\\": [{\\\"src\\\": \\\"hda\\\", \\\"id\\\": 4991}]}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "uuid": "747bd5c6-340c-4959-8adb-dc34d1ca62e4", 
+            "workflow_outputs": []
+        }, 
+        "3": {
+            "annotation": "", 
+            "content_id": "mtbls520_08_species_features", 
+            "errors": null, 
+            "id": 3, 
+            "input_connections": {
+                "infile1": {
+                    "id": 2, 
+                    "output_name": "outfile2"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "mtbls520_08_species_features", 
+            "outputs": [
+                {
+                    "name": "outfile1", 
+                    "type": "pdf"
+                }
+            ], 
+            "position": {
+                "left": 686.4999847412109, 
+                "top": 163
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_08_species_features", 
+            "tool_state": "{\"__page__\": null, \"__rerun_remap_job_id__\": null, \"infile1\": \"{\\\"values\\\": [{\\\"src\\\": \\\"hda\\\", \\\"id\\\": 4991}]}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "uuid": "ba8a7761-f126-42f0-8771-726012e8d2f9", 
+            "workflow_outputs": []
+        }
+    }, 
+    "uuid": "faf64fcb-e1d8-4c60-99d4-7c0735f81f6a"
+}
