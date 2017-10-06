@@ -5,6 +5,8 @@ Eco-Metabolomics container containing R and packages used in Ecology and Metabol
 
 This container bundles frequently used tools in Ecological Metabolomics.
 
+This container also contains R scripts that are needed to run the Galaxy workflow for the Metabolights 520 study. The study is currently private and will be published once the paper has been submitted.
+
 ## Description
 
 This container bundles frequently used tools in Ecological Metabolomics. The following R libraries are included in this container:
@@ -21,6 +23,12 @@ This container bundles frequently used tools in Ecological Metabolomics. The fol
 - dendextend
 - cba
 - nlme
+
+## Workflow
+
+The Galaxy workflow for the Metabolights 520 study is currently work-in-progress.
+
+![metabolights520_workflow](galaxy/mtbls520_workflow.jpg)
 
 ## Key features
 
