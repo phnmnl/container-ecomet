@@ -10,7 +10,7 @@ mtbls520_02_extract.sh $infile $polarity $studyfolder $studymaf $qcfolder $qcmaf
   ]]>
   </command>
   <inputs>
-    <data name="infile" type="data" format="no_unzip.zip" label="Zipped MetaboLights study" />
+    <param name="infile" type="data" format="no_unzip.zip" label="Zipped MetaboLights study" />
     <param name="polarity" type="text" value="pos" label="Polarity" help="Enter the polarity here, e.g. pos" />
   </inputs>
   <outputs>
