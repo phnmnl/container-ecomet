@@ -6,14 +6,12 @@
   </requirements>
   <description>Download private MTBLS study via https.</description>
   <command><![CDATA[
-export MTBLS_ID="$mtbls_id";
-export MTBLS_TOKEN="$mtbls_token";
-wget -O $outfile1 "https://www.ebi.ac.uk/metabolights/MTBLS${MTBLS_ID}/files/MTBLS${MTBLS_ID}?token=${MTBLS_TOKEN}";
+mtbls520_01_mtbls_download.sh $id $token $outfile1
   ]]>
   </command>
   <inputs>
-    <param name="mtbls_id" type="text" value="520" label="MetaboLights ID" help="Enter the MetaboLights ID here, e.g. 520." />
-    <param name="mtbls_token" type="text" label="MetaboLights Token" help="Enter the Secret MetaboLights Token here, e.g. aabbccdd-1122-4455-66ff-f0e0d0c0b0a0." />
+    <param name="id" type="text" value="520" label="MetaboLights ID" help="Enter the MetaboLights ID here, e.g. 520." />
+    <param name="token" type="text" label="MetaboLights Token" help="Enter the Secret MetaboLights Token here, e.g. aabbccdd-1122-4455-66ff-f0e0d0c0b0a0." />
   </inputs>
   <outputs>
     <data name="outfile1" type="data" format="zip" label="ZIP file containing the whole MTBLS study." />
