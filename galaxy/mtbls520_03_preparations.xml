@@ -12,11 +12,11 @@ mtbls520_03_preparations.r $outfile1 2>&1;
   </command>
   <inputs>
     <param name="polarity" type="text" value="pos" label="Polarity" help="Enter the polarity here, e.g. pos" />
-    <data name="afile" type="data" format="txt" label="MetaboLights A file containing analytical metadata" />
-    <data name="sfile" type="data" format="txt" label="MetaboLights S file containing sample metadata" />
+    <param name="afile" type="data" format="txt" label="MetaboLights A file containing analytical metadata" />
+    <param name="sfile" type="data" format="txt" label="MetaboLights S file containing sample metadata" />
   </inputs>
   <outputs>
-    <param name="outfile1" type="data" format="rdata" optional="False" label="Output Rdata file." />
+    <data name="outfile1" type="data" format="rdata" optional="False" label="Output Rdata file." />
   </outputs>
   <help><![CDATA[
 This is the MTBLS520 study.
