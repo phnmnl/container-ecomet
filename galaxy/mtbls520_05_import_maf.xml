@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
-<tool id="mtbls520_05b_import_maf" name="mtbls520_05b_import_maf" version="0.1">
+<tool id="mtbls520_05_import_maf" name="mtbls520_05_import_maf" version="0.1">
   <requirements>
     <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
   </requirements>

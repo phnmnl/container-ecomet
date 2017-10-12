@@ -6,7 +6,7 @@
   </requirements>
   <description>Perform phylogeny comparison analysis from the MTBLS520 study.</description>
   <command><![CDATA[
-mtbls520_18_phylogeny.r $infile1 $infile2 $outfile1 2>&1;
+mtbls520_18_phylogeny.r $infile1 $infile2 $outfile2 2>&1;
 exit $?;
   ]]>
   </command>
@@ -15,7 +15,7 @@ exit $?;
     <param name="infile2" type="data" format="txt" optional="False" label="Input phylogeny file in tree format." />
   </inputs>
   <outputs>
-    <data name="outfile1" type="data" format="pdf" label="Phylogeny comparison PDF plot" />
+    <data name="outfile1" type="data" format="pdf" label="sPLS-DA PDF plot" />
   </outputs>
   <help><![CDATA[
 This is the MTBLS520 study.

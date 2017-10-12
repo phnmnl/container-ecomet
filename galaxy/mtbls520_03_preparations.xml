@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--Proposed Tool Section: [Eco-Metabolomics]-->
+<tool id="mtbls520_03_preparations" name="mtbls520_03_preparations" version="0.1">
+  <requirements>
+    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
+  </requirements>
+  <description>Preparations for MTBLS 520 study.</description>
+  <command><![CDATA[
+mtbls520_03_preparations.sh $polarity $afile $sfile;
+mtbls520_03_preparations.r $outfile1 2>&1;
+  ]]>
+  </command>
+  <inputs>
+    <param name="polarity" type="text" value="pos" label="Polarity" help="Enter the polarity here, e.g. pos" />
+    <data name="afile" type="data" format="txt" label="MetaboLights A file containing analytical metadata" />
+    <data name="sfile" type="data" format="txt" label="MetaboLights S file containing sample metadata" />
+  </inputs>
+  <outputs>
+    <param name="outfile1" type="data" format="rdata" optional="False" label="Output Rdata file." />
+  </outputs>
+  <help><![CDATA[
+This is the MTBLS520 study.
+The study will be published soon. This code is work-in-progress. Do not redistribute unless study published.
+Copyright (C) 2017 Kristian Peters - IPB Halle
+----
+More updates soon
+  ]]></help>
+</tool>
+

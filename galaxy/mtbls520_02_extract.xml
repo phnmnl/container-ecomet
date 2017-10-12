@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--Proposed Tool Section: [Eco-Metabolomics]-->
+<tool id="mtbls520_02_extract" name="mtbls520_02_extract" version="0.1">
+  <requirements>
+    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
+  </requirements>
+  <description>Extract files from MTBLS 520 study.</description>
+  <command><![CDATA[
+mtbls520_02_extract.sh $infile $polarity $studyfolder $studymaf $qcfolder $qcmaf $traitsfile $phylofile $afile $sfile;
+  ]]>
+  </command>
+  <inputs>
+    <data name="infile" type="data" format="no_unzip.zip" label="Zipped MetaboLights study" />
+    <param name="polarity" type="text" value="pos" label="Polarity" help="Enter the polarity here, e.g. pos" />
+  </inputs>
+  <outputs>
+    <collection name="studyfiles" type="list" format="no_unzip.zip" label="RAW mzML files of the study" >
+      <discover_datasets pattern="__name__" directory="studyfolder" format="no_unzip.zip" visible="True" />
+    </collection>
+    <data name="studymaf" type="data" format="txt" label="MAF file containing the peak table of the study" />
+    <collection name="qcfiles" type="list" format="no_unzip.zip" label="Quality Control mzML files of the study" >
+      <discover_datasets pattern="__name__" directory="qcfolder" format="no_unzip.zip" visible="True" />
+    </collection>
+    <data name="qcmaf" type="data" format="txt" label="MAF file containing the peak table of the Quality Control" />
+    <data name="traitsfile" type="data" format="txt" label="Traits file containing table with ecological characteristics" />
+    <data name="phylofile" type="data" format="txt" label="Tree file containing the phylogeny tree of the species in the study" />
+    <data name="afile" type="data" format="txt" label="MetaboLights A file containing analytical metadata" />
+    <data name="sfile" type="data" format="txt" label="MetaboLights S file containing sample metadata" />
+  </outputs>
+  <help><![CDATA[
+This is the MTBLS520 study.
+The study will be published soon. This code is work-in-progress. Do not redistribute unless study published.
+Copyright (C) 2017 Kristian Peters - IPB Halle
+----
+More updates soon
+  ]]></help>
+</tool>
+
