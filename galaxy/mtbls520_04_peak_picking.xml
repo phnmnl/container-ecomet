@@ -13,7 +13,7 @@ mtbls520_04_peak_picking.r temp.rdata $outfile1 $outfile2 2>&1;
   </command>
   <inputs>
     <param name="polarity" type="text" label="Polarity" help="Enter the polarity here, e.g. pos" />
-    <param name="studyfolder" type="data_collection" format="mzML" collection_type="list" label="Input RAW mzML files of the study" />
+    <param name="studyfolder" type="data_collection" format="mzML" collection_type="list" multiple="True" label="Input RAW mzML files of the study" />
     <param name="afile" type="data" format="txt" label="MetaboLights A file containing analytical metadata" />
     <param name="sfile" type="data" format="txt" label="MetaboLights S file containing sample metadata" />
   </inputs>

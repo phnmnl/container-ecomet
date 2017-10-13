@@ -2,8 +2,8 @@
 
 # Check parameters
 if [[ $# -lt 10 ]]; then
-	print "Error! 10 Arguments required."
-	print "Usage: \$0 input.zip polarity study.dir study.maf qc.dir qc.maf traits.txt phylo.tre a.txt s.txt"
+	echo "Error! 10 Arguments required."
+	echo "Usage: \$0 input.zip polarity study.dir study.maf qc.dir qc.maf traits.txt phylo.tre a.txt s.txt"
 	exit 1
 fi
 
@@ -22,7 +22,7 @@ A_FILE="${9}"
 S_FILE="${10}"
 
 # Unzip whole dataset
-mkdir output || exit 2
+mkdir -p output || exit 2
 unzip -d output ${INPUT} || exit 1
 
 # Create output files and folders (for dataset collections)
@@ -42,6 +42,6 @@ mv output/m_*_profiling_*${POLARITY}*.maf ${STUDY_MAF}
 mv output/m_*_quality_control_*${POLARITY}*.maf ${QC_MAF}
 mv output/a_*${POLARITY}*.txt ${A_FILE}
 mv output/s_*.txt ${S_FILE}
-mv output/${TRAITS_FILE} 
-mv output/${PHYLO_FILE}
+mv output/m_characteristics.csv ${TRAITS_FILE} 
+mv output/m_moss_phylo.tre ${PHYLO_FILE}
 

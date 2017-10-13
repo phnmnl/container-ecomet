@@ -14,7 +14,7 @@ mtbls520_01_mtbls_download.sh $id $token $outfile1
     <param name="token" type="text" label="MetaboLights Token" help="Enter the Secret MetaboLights Token here, e.g. aabbccdd-1122-4455-66ff-f0e0d0c0b0a0." />
   </inputs>
   <outputs>
-    <data name="outfile1" type="data" format="zip" label="ZIP file containing the whole MTBLS study." />
+    <data name="outfile1" type="data" format="no_unzip.zip" label="ZIP file containing the whole MTBLS study." />
   </outputs>
   <help><![CDATA[
 This is the MTBLS520 study.

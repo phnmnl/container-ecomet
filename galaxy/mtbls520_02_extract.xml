@@ -6,7 +6,7 @@
   </requirements>
   <description>Extract files from MTBLS 520 study.</description>
   <command><![CDATA[
-mtbls520_02_extract.sh $infile $polarity $studyfolder $studymaf $qcfolder $qcmaf $traitsfile $phylofile $afile $sfile;
+mtbls520_02_extract.sh $infile $polarity studyfolder $studymaf qcfolder $qcmaf $traitsfile $phylofile $afile $sfile;
   ]]>
   </command>
   <inputs>
