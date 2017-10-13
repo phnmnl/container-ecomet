@@ -6,7 +6,7 @@
   </requirements>
   <description>Download private MTBLS study via https.</description>
   <command><![CDATA[
-mtbls520_01_mtbls_download.sh $id $token $outfile1
+mtbls520_01_mtbls_download.sh $id $token $outfile1 2>&1;
   ]]>
   </command>
   <inputs>

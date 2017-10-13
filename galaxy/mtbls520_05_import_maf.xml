@@ -6,7 +6,7 @@
   </requirements>
   <description>Import MAF file from the MTBLS520 study.</description>
   <command><![CDATA[
-mtbls520_05b_import_maf.r $infile1 $infile2 $outfile1 2>&1;
+mtbls520_05_import_maf.r $infile1 $infile2 $outfile1 2>&1;
 exit $?;
   ]]>
   </command>
