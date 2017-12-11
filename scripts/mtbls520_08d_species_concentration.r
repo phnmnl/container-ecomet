@@ -26,11 +26,13 @@ args <- commandArgs(trailingOnly=TRUE)
 
 
 
-# ---------- Plot unique features ----------
+# ---------- Plot concentration ----------
 pdf(file=args[2], encoding="ISOLatin1", pointsize=10, width=5, height=5, family="Helvetica")
-boxplot(model_div$unique ~ species, col=species_colors, names=NA, main="Number of unique features", xlab="Species", ylab="number of unique features")
+boxplot(model_div$concentration ~ species, col=species_colors, names=NA, main="Concentration / Sum of Intensities", xlab="Species", ylab="Concentration [TIC]")
 text(1:length(species_names), par("usr")[3]-(par("usr")[4]-par("usr")[3])/14, srt=-22.5, adj=0.5, labels=species_names, xpd=TRUE, cex=0.9)
-div_tukey <- tukey.test(model = model_div$unique ~ species)
+div_tukey <- tukey.test(model = model_div$concentration ~ species)
 text(1:length(species_names), par("usr")[4]+(par("usr")[4]-par("usr")[3])/40, adj=0.5, labels=div_tukey[,1], xpd=TRUE, cex=0.8)
 dev.off()
+
+
 

@@ -14,9 +14,9 @@ options(stringAsfactors=FALSE, useFancyQuotes=FALSE)
 
 # Take in trailing command line arguments
 args <- commandArgs(trailingOnly=TRUE)
-if (length(args) < 3) {
+if (length(args) < 4) {
 	print("Error! No or not enough arguments given.")
-	print("Usage: $0 input.rdata moss_phylo.tre plot.pdf")
+	print("Usage: $0 input.rdata moss_phylo.tre procrustes.pdf phylogeny.pdf")
 	quit(save="no", status=1, runLast=FALSE)
 }
 
@@ -30,6 +30,7 @@ library(ape)
 library(pvclust)
 library(dendextend)
 library(cba)
+library(phangorn)
 
 
 
@@ -71,30 +72,45 @@ feat_oclust <- feat_hclust
 feat_oclust$merge <- feat_opti$merge
 feat_oclust$order <- feat_opti$order
 
-# Does not allow custom distance matrix: Bootstrap PVClust
-#model_pvclust <- pvclust(t(feat_list_species), method.hclust="complete", method.dist="correlation", parallel=TRUE)
+# Manually rotate "Polstr" + "Plaund" branches
+feat_oclust <- reorder(feat_oclust, c(1, 2, 4, 5, 3, 9, 6, 8, 7))
 
 
 # Procrustes analysis
-#model_procrust <- protest(X=phylo_dist, Y=feat_dist, permutations=10000)
-#plot(model_procrust)
+model_procrust <- protest(X=phylo_dist, Y=feat_dist, permutations=10000)
+
+pdf(file=args[3], encoding="ISOLatin1", pointsize=10, width=5, height=5, family="Helvetica")
+plot(model_procrust)
+dev.off()
 
 # Mantel test
 model_mantel <- mantel(xdis=phylo_dist, ydis=feat_dist, method="pearson", permutations=10000)
 
 # Correlation tests
 model_cor <- cor(phylo_dist, feat_dist, method="pearson")
-model_cop <- cor_cophenetic(hclust(phylo_dist), hclust(feat_dist), method="spearman")
+model_cop <- cor_cophenetic(hclust(phylo_dist), hclust(feat_dist), method="pearson")
+
+# Robinson-Foulds metric
+RF.dist(phylo_tree, as.phylo(feat_oclust), normalize=TRUE, check.labels=TRUE, rooted=TRUE)
 
 
 # Plot phylogenetic tree
-pdf(file=args[3], encoding="ISOLatin1", pointsize=10, width=5, height=5, family="Helvetica")
-par(mfrow=c(2,1), cex=0.8)
-plot(phylo_tree, direction="downwards", mar=c(0,0,0,0), main="phylogenetic tree")
-#plot(phylo_hclust, mar=c(0,0,0,0), main="phylogenetic tree")
-plot(feat_oclust, hang=-1, mar=c(0,0,0,0), main=paste("feat_list tree (r=",round(model_mantel$statistic,2),", p=",round(model_mantel$signif,2),", c=",round(model_cop,2),")",sep=""))
-#plot(model_pvclust, main=paste("feat_list tree (r=",round(model_mantel$statistic,2),", p=",round(model_mantel$signif,2),", c=",round(model_cop,2),")",sep=""))
+pdf(args[4], encoding="ISOLatin1", pointsize=12, width=8, height=5, family="Helvetica")
+par(mfrow=c(1,2), mar=c(1,1,2,1), cex=1.0)
+plot(phylo_tree, type="phylogram", direction="rightwards", x.lim=c(0,11), label.offset=0.4, use.edge.length=TRUE, show.tip.label=TRUE, tip.color=species_colors[phylo_index], font=2, main="")
+mtext(text="(a)", adj=0, line=0.5, font=2, cex=1.2)
+plot(as.phylo(feat_oclust), type="phylogram", direction="leftwards", x.lim=c(0,0.30), label.offset=0.01, use.edge.length=TRUE, show.tip.label=TRUE, tip.color=species_colors[phylo_index], font=2, main="")
+mtext(text="(b)", adj=0, line=0.5, font=2, cex=1.2)
 dev.off()
 
+
+# r = Mantel
+print(paste("Mantel statistic:", round(model_mantel$statistic,3)))
+
+# c = cor_cophenetic
+print(paste("Correlation:", round(model_cop,3)))
+
+# rf = Robinson-Foulds
+print(paste("Robinson-Foulds metric:", round(RF.dist(phylo_tree, as.phylo(feat_oclust), normalize=TRUE, check.labels=TRUE, rooted=TRUE), 3)))
 
 

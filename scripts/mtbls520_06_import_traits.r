@@ -30,11 +30,12 @@ library(vegan)
 # These variables will be exported globally
 traits <- NULL
 charist <- NULL
+onsite <- NULL
 
 
 
 # Import traits from csv
-traits <- read.csv(file=args[2], header=TRUE, sep=";", quote="\"", fill=TRUE, dec=",", stringsAsFactors=FALSE)
+traits <- read.csv(args[2], header=TRUE, sep=";", quote="\"", fill=FALSE, dec=",", stringsAsFactors=FALSE)
 traits$Sample.Negative <- gsub('(.*)\\..*', '\\1', gsub('( |-|,)', '.', traits$Sample.Negativ))
 traits$Sample.Positive <- gsub('(.*)\\..*', '\\1', gsub('( |-|,)', '.', traits$Sample.Positiv))
 traits <- traits[match(mzml_names, traits$Sample.Positive),]
@@ -64,6 +65,16 @@ charist <- cbind(charist, as.data.frame(model.matrix(~ 0 + Season, data=traits))
 
 # Species
 charist <- cbind(charist, as.data.frame(model.matrix(~ 0 + Code, data=traits)))
+
+# On-site characteristics (immediate growth conditions)
+onsite <- as.data.frame(traits[,c("Sample","Season","Code","Species")])
+onsite <- cbind(onsite, as.data.frame(model.matrix(~ 0 + Freshweight, data=traits)))
+onsite <- cbind(onsite, as.data.frame(model.matrix(~ 0 + Onsite_Substrate, data=traits)))
+onsite <- cbind(onsite, as.data.frame(model.matrix(~ 0 + Onsite_Light, data=traits)))
+onsite <- cbind(onsite, as.data.frame(model.matrix(~ 0 + Onsite_Moisture, data=traits)))
+onsite <- cbind(onsite, as.data.frame(model.matrix(~ 0 + Exposition, data=traits)))
+onsite <- cbind(onsite, as.data.frame(model.matrix(~ 0 + Season, data=traits)))
+onsite <- cbind(onsite, as.data.frame(model.matrix(~ 0 + Code, data=traits)))
 
 
 

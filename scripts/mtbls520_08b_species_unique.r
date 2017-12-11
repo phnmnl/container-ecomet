@@ -26,11 +26,12 @@ args <- commandArgs(trailingOnly=TRUE)
 
 
 
-# ---------- Plot shannon diversity ----------
+# ---------- Plot unique features ----------
 pdf(file=args[2], encoding="ISOLatin1", pointsize=10, width=5, height=5, family="Helvetica")
-boxplot(model_div$shannon ~ species, col=species_colors, names=NA, main="Biochemical Shannon Diversity", xlab="Species", ylab="Shannon Diversity")
+boxplot(model_div$unique ~ species, col=species_colors, names=NA, main="Number of unique features", xlab="Species", ylab="number of unique features")
 text(1:length(species_names), par("usr")[3]-(par("usr")[4]-par("usr")[3])/14, srt=-22.5, adj=0.5, labels=species_names, xpd=TRUE, cex=0.9)
-div_tukey <- tukey.test(model = model_div$shannon ~ species)
+div_tukey <- tukey.test(model = model_div$unique ~ species)
 text(1:length(species_names), par("usr")[4]+(par("usr")[4]-par("usr")[3])/40, adj=0.5, labels=div_tukey[,1], xpd=TRUE, cex=0.8)
 dev.off()
+
 

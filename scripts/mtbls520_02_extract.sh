@@ -21,9 +21,10 @@ PHYLO_FILE="${8}"
 A_FILE="${9}"
 S_FILE="${10}"
 
-# Unzip whole dataset
+# Only take latest files and unzip whole dataset
 mkdir -p output || exit 2
-unzip -d output ${INPUT} || exit 1
+zip ${INPUT} -d '*audit*'
+unzip -j -d output ${INPUT} || exit 1
 
 # Create output files and folders (for dataset collections)
 mkdir -p ${STUDY_FILES} || exit 3
@@ -38,10 +39,10 @@ touch ${S_FILE} || exit 10
 # Move files to their places
 mv output/${POLARITY}_MM8_*.mzML ${QC_FILES}/
 mv output/${POLARITY}_[0-9]*.mzML ${STUDY_FILES}/
-mv output/m_*_profiling_*${POLARITY}*.maf ${STUDY_MAF}
-mv output/m_*_quality_control_*${POLARITY}*.maf ${QC_MAF}
-mv output/a_*${POLARITY}*.txt ${A_FILE}
-mv output/s_*.txt ${S_FILE}
+mv output/m_bryos_metabolite_profiling_mass_spectrometry_${POLARITY}itive_mode.maf.tsv ${STUDY_MAF}
+mv output/m_bryos_quality_control_mass_spectrometry_${POLARITY}itive_mode.maf.tsv ${QC_MAF}
+mv output/a_bryos_metabolite_profiling_mass_spectrometry_${POLARITY}itive_mode.txt ${A_FILE}
+mv output/s_bryos.txt ${S_FILE}
 mv output/m_characteristics.csv ${TRAITS_FILE} 
 mv output/m_moss_phylo.tre ${PHYLO_FILE}
 

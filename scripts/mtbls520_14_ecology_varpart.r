@@ -36,7 +36,6 @@ pdf(file=args[2], encoding="ISOLatin1", pointsize=10, width=6, height=4, family=
 model_vp <- varpart(feat_list, ~ traits$Code, ~ as.matrix(charist[,c(5:ncol(charist))]))
 plot(model_vp, Xnames=c("species","characteristics"), cutoff=0, cex=1.2, id.size=1.2, digits=1, bg=c("darkblue","darkred"))
 
-# Growth form and Life form explain most (0.10 vs. 0.09)
 dev.off()
 
 

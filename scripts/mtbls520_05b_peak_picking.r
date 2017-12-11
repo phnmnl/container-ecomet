@@ -35,8 +35,8 @@ library(RColorBrewer)    # For colors
 # ---------- Create features list ----------
 # Find Peaks in grouped phenoData according to directory structure
 xset <- xcmsSet(files=mzml_files, method="centWave", BPPARAM=MulticoreParam(nSlaves),
-		ppm=ppm, peakwidth=peakwidth, snthresh=snthresh, prefilter=prefilter,
-		fitgauss=fitgauss, verbose.columns=verbose.columns)
+				ppm=ppm, peakwidth=peakwidth, snthresh=snthresh, prefilter=prefilter,
+				fitgauss=fitgauss, verbose.columns=verbose.columns)
 
 # Remove values outside of RT range
 xset_peaks <- as.data.frame(xset@peaks)
@@ -60,7 +60,7 @@ xset3 <- xset2
 
 # Retention time correction
 xset4 <- retcor(xset3, method="loess", family="gaussian", plottype="mdevden",
-		missing=10, extra=1, span=2)
+				missing=10, extra=1, span=2)
 
 # Peak re-grouping
 xset5 <- group(xset4, mzwid=mzwidth, minfrac=minfrac, bw=bwindow)
@@ -81,28 +81,35 @@ peak_xcam <- xcam
 # ---------- Export ReducedPeaklist used for statistics as MAF ----------
 # Export ReducedPeaklist used for statistics as MAF
 xcam_report <- getReducedPeaklist(xcam, method="median", default.adduct.info="first", cleanup=FALSE)
-zero_col <- rep("",nrow(xcam_report))
-maf <- cbind(data.frame(identifier=zero_col,
-			chemical_formula=zero_col,
-			description=zero_col,
-			mass_to_charge=xcam_report$mz,
-			fragmentation=zero_col,
-			charge=zero_col,
-			retention_time=xcam_report$rt,
-			taxid=zero_col,
-			species=zero_col,
-			database=zero_col,
-			database_version=zero_col,
-			reliability=zero_col,
-			uri=zero_col,
-			search_engine=zero_col,
-			search_engine_score=zero_col,
-			modifications=zero_col,
-			smallmolecule_abundance_sub=zero_col,
-			smallmolecule_abundance_stdev_sub=zero_col,
-			smallmolecule_abundance_std_error_sub=zero_col),
-		xcam_report)
+l <- nrow(xcam_report)
 
+# These columns are defined by MetaboLights mzTab
+maf <- apply(data.frame(database_identifier = character(l),
+                        chemical_formula = character(l),
+                        smiles = character(l),
+                        inchi = character(l),
+                        metabolite_identification = character(l),
+                        mass_to_charge = xcam_report$mz,
+                        fragmentation = character(l),
+                        modifications = character(l),
+                        charge = character(l),
+                        retention_time = xcam_report$rt,
+                        taxid = character(l),
+                        species = character(l),
+                        database = character(l),
+                        database_version = character(l),
+                        reliability = character(l),
+                        uri = character(l),
+                        search_engine = character(l),
+                        search_engine_score = character(l),
+                        smallmolecule_abundance_sub = character(l),
+                        smallmolecule_abundance_stdev_sub = character(l),
+                        smallmolecule_abundance_std_error_sub = character(l),
+                        xcam_report,
+                        stringsAsFactors=FALSE),
+              2, as.character)
+
+# Export MAF
 write.table(maf, file=args[2], row.names=FALSE, col.names=colnames(maf), quote=TRUE, sep="\t", na="\"\"")
 
 # Return variables (cols: features, rows: samples)
@@ -112,8 +119,8 @@ peak_maf <- maf
 
 # ---------- Preprocess binary features list ----------
 # Get Reduced Peaklist
-#xcam_report <- getReducedPeaklist(peak_xcam, method="median", default.adduct.info="first", cleanup=FALSE)
-xcam_report <- peak_maf
+xcam_report <- getReducedPeaklist(peak_xcam, method="median", default.adduct.info="first", cleanup=FALSE)
+#xcam_report <- peak_maf
 
 # Diff report
 diff_list <- xcam_report
@@ -133,13 +140,8 @@ bina_list[bina_list != 0] <- 1
 rownames(bina_list) <- paste("pos_", unique(pcgroup), sep="")
 
 # Only unique compounds in one group and not the others
-if (all(as.character(sclass) == as.character(species))) { #species
-	uniq_list <- apply(X=bina_list, MARGIN=1,
-					   FUN=function(x) { if (length(unique(species[grepl("1", x)])) == 1) x else rep(0, length(x)) } )
-} else { #seasons
-	uniq_list <- apply(X=bina_list, MARGIN=1,
-					   FUN=function(x) { if (length(unique(seasons[grepl("1", x)])) == 1) x else rep(0, length(x)) } )
-}
+uniq_list <- apply(X=bina_list, MARGIN=1,
+		   FUN=function(x) { if (length(unique(species[grepl("1", x)])) == 1) x else rep(0, length(x)) } )
 uniq_list <- t(uniq_list)
 colnames(uniq_list) <- colnames(bina_list)
 
@@ -151,8 +153,8 @@ uniq_list <- t(uniq_list)
 
 # ---------- Preprocess features list ----------
 # Get Reduced Peaklist
-#xcam_report <- getReducedPeaklist(peak_xcam, method="median", default.adduct.info="first", cleanup=TRUE)
-xcam_report <- peak_maf
+xcam_report <- getReducedPeaklist(peak_xcam, method="median", default.adduct.info="first", cleanup=TRUE)
+#xcam_report <- peak_maf
 
 # Diff report
 diff_list <- xcam_report

@@ -24,28 +24,14 @@ if (length(args) < 2) {
 load(file=args[1])
 args <- commandArgs(trailingOnly=TRUE)
 
-# Load libraries
-library(vegan)
-
-
-
-# ---------- Tukey-Test ----------
-tukey.test <- function(model) {
-    div_anova <- aov(model)
-    div_mc <- multcomp::glht(div_anova, multcomp::mcp(seasons="Tukey"))
-    div_cld <- multcomp::cld(summary(div_mc), decreasing=TRUE, level=0.05)
-    div_tukey <- data.frame("tukey_groups"=div_cld$mcletters$Letters)
-    return(div_tukey)
-}
-
 
 
 # ---------- Plot shannon diversity ----------
 pdf(file=args[2], encoding="ISOLatin1", pointsize=10, width=5, height=5, family="Helvetica")
-boxplot(model_div$shannon ~ seasons, col=seasons_colors, names=NA, main="Biochemical Shannon Diversity", xlab="Seasons", ylab="Shannon Diversity")
-text(1:length(seasons_names), par("usr")[3]-(par("usr")[4]-par("usr")[3])/14, srt=-22.5, adj=0.5, labels=seasons_names, xpd=TRUE, cex=0.9)
-div_tukey <- tukey.test(model = model_div$shannon ~ seasons)
-text(1:length(seasons_names), par("usr")[4]+(par("usr")[4]-par("usr")[3])/40, adj=0.5, labels=div_tukey[,1], xpd=TRUE, cex=0.8)
+boxplot(model_div$shannon ~ species, col=species_colors, names=NA, main="Biochemical Shannon Diversity", xlab="Species", ylab="Shannon Diversity")
+text(1:length(species_names), par("usr")[3]-(par("usr")[4]-par("usr")[3])/14, srt=-22.5, adj=0.5, labels=species_names, xpd=TRUE, cex=0.9)
+div_tukey <- tukey.test(model = model_div$shannon ~ species)
+text(1:length(species_names), par("usr")[4]+(par("usr")[4]-par("usr")[3])/40, adj=0.5, labels=div_tukey[,1], xpd=TRUE, cex=0.8)
 dev.off()
 
 

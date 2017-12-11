@@ -34,3 +34,4 @@ div_tukey <- tukey.test(model = model_div$features ~ species)
 text(1:length(species_names), par("usr")[4]+(par("usr")[4]-par("usr")[3])/40, adj=0.5, labels=div_tukey[,1], xpd=TRUE, cex=0.8)
 dev.off()
 
+

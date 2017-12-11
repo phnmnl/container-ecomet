@@ -14,9 +14,9 @@ options(stringAsfactors=FALSE, useFancyQuotes=FALSE)
 
 # Take in trailing command line arguments
 args <- commandArgs(trailingOnly=TRUE)
-if (length(args) < 2) {
+if (length(args) < 3) {
 	print("Error! No or not enough arguments given.")
-	print("Usage: $0 input.rdata plot.pdf")
+	print("Usage: $0 input.rdata histogram.pdf plot.pdf")
 	quit(save="no", status=1, runLast=FALSE)
 }
 
@@ -47,7 +47,9 @@ colnames(model_corr) <- as.character(c(1:ncol(model_corr)))
 model_corr <- data.frame(corr=as.numeric(t(model_corr)), species=as.character(rep(species_names,each=ncol(model_corr))))
 
 # Show histogram
+pdf(file=args[2], encoding="ISOLatin1", pointsize=10, width=5, height=5, family="Helvetica")
 hist(model_corr$corr)
+dev.off()
 
 # Tukey test
 model_anova <- aov(corr ~ species, data=model_corr)
@@ -56,7 +58,7 @@ model_cld <- multcomp::cld(summary(model_mc), decreasing=TRUE, level=0.05)
 model_tukey <- data.frame("tukey_groups"=model_cld$mcletters$Letters)
 
 # Boxplot
-pdf(file=args[2], encoding="ISOLatin1", pointsize=10, width=5, height=5, family="Helvetica")
+pdf(file=args[3], encoding="ISOLatin1", pointsize=10, width=5, height=5, family="Helvetica")
 boxplot(model_corr$corr ~ model_corr$species, col=species_colors, names=NA, main="Species variability", xlab="Species", ylab="Pearson's r correlation coefficients")
 text(1:length(species_names), par("usr")[3]-(par("usr")[4]-par("usr")[3])/14, srt=-22.5, adj=0.5, labels=species_names, xpd=TRUE, cex=0.9)
 text(1:length(species_names), par("usr")[4]+(par("usr")[4]-par("usr")[3])/40, adj=0.5, labels=model_tukey[,1], xpd=TRUE, cex=0.8)
