@@ -2,7 +2,7 @@
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
 <tool id="mtbls520_02b_qc_extract" name="mtbls520_02b_qc_extract" version="1.0">
   <requirements>
-    <container type="docker">korseby/mtbls520</container>
+    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
   </requirements>
   <description>Extract QC files from MTBLS 520 study.</description>
   <command><![CDATA[

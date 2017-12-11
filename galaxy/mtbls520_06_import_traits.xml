@@ -2,7 +2,7 @@
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
 <tool id="mtbls520_06_import_traits" name="mtbls520_06_import_traits" version="0.5">
   <requirements>
-    <container type="docker">korseby/mtbls520</container>
+    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
   </requirements>
   <description>Import ecological characteristics file from the MTBLS520 study.</description>
   <stdio>

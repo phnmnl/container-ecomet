@@ -2,7 +2,7 @@
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
 <tool id="mtbls520_19c_seasons_variability" name="mtbls520_19c_seasons_variability" version="1.0">
   <requirements>
-    <container type="docker">korseby/mtbls520</container>
+    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
   </requirements>
   <description>Show seasons variability from the MTBLS520 study.</description>
   <stdio>

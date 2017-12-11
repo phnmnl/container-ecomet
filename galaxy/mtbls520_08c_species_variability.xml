@@ -2,7 +2,7 @@
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
 <tool id="mtbls520_08c_species_variability" name="mtbls520_08c_species_variability" version="1.0">
   <requirements>
-    <container type="docker">korseby/mtbls520</container>
+    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
   </requirements>
   <description>Show species variability from the MTBLS520 study.</description>
   <stdio>

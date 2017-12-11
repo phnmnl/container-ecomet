@@ -2,7 +2,7 @@
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
 <tool id="mtbls520_14_ecology_varpart" name="mtbls520_14_ecology_varpart" version="1.0">
   <requirements>
-    <container type="docker">korseby/mtbls520</container>
+    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
   </requirements>
   <description>Perform variation partitioning on characteristics on the data from the MTBLS520 study.</description>
   <stdio>

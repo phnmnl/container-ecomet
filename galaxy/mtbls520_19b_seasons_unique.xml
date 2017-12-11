@@ -2,7 +2,7 @@
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
 <tool id="mtbls520_19b_seasons_unique" name="mtbls520_19b_seasons_unique" version="1.0">
   <requirements>
-    <container type="docker">korseby/mtbls520</container>
+    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
   </requirements>
   <description>Calculate seasons unique features from the MTBLS520 study.</description>
   <stdio>
