@@ -28,8 +28,7 @@ RUN R -e 'install.packages("BiocInstaller", repos="http://bioconductor.org/packa
     R -e 'library(BiocInstaller); biocLite("multtest")' && \
     R -e 'install.packages(c("RColorBrewer","Hmisc","gplots","multcomp","rgl","mixOmics","vegan","cba","nlme","ape","pvclust","dendextend","phangorn","VennDiagram"), repos="https://mirrors.ebi.ac.uk/CRAN/")'
 
-RUN apt-get -y --purge remove make gcc gfortran g++ libblas-dev liblapack-dev libssl-dev pkg-config git xorg-dev libglu1-mesa-dev libgl1-mesa-dev && \
-    apt-get -y clean && apt-get -y autoremove && rm -rf /var/lib/{cache,log}/ /tmp/* /var/tmp/*
+RUN apt-get -y clean && apt-get -y autoremove && rm -rf /var/lib/{cache,log}/ /tmp/* /var/tmp/*
 
 # Add scripts to container
 ADD scripts/* /usr/local/bin/
