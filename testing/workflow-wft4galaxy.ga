@@ -1,0 +1,277 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "MTBLS 520 wft4galaxy", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "content_id": "mtbls520_01_mtbls_download", 
+            "errors": null, 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [], 
+            "label": null, 
+            "name": "mtbls520_01_mtbls_download", 
+            "outputs": [
+                {
+                    "name": "mtbls520", 
+                    "type": "zip"
+                }
+            ], 
+            "position": {
+                "left": 198, 
+                "top": 161.5
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_01_mtbls_download", 
+            "tool_state": "{\"__job_resource\": \"{\\\"__current_case__\\\": 0, \\\"__job_resource__select\\\": \\\"no\\\"}\", \"__page__\": null, \"token\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"id\": \"\\\"520\\\"\"}", 
+            "tool_version": "1.0", 
+            "type": "tool", 
+            "uuid": "e05d1386-6855-413a-ad41-4d34ffc45f98", 
+            "workflow_outputs": []
+        }, 
+        "1": {
+            "annotation": "", 
+            "content_id": "mtbls520_02a_raw_extract", 
+            "errors": null, 
+            "id": 1, 
+            "input_connections": {
+                "mtbls520": {
+                    "id": 0, 
+                    "output_name": "mtbls520"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool mtbls520_02a_raw_extract", 
+                    "name": "mtbls520"
+                }
+            ], 
+            "label": null, 
+            "name": "mtbls520_02a_raw_extract", 
+            "outputs": [
+                {
+                    "name": "rawfiles", 
+                    "type": "input"
+                }, 
+                {
+                    "name": "rawmaf", 
+                    "type": "tabular"
+                }, 
+                {
+                    "name": "traitsfile", 
+                    "type": "csv"
+                }, 
+                {
+                    "name": "phylofile", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "afile", 
+                    "type": "tabular"
+                }, 
+                {
+                    "name": "sfile", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 510, 
+                "top": 255
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_02a_raw_extract", 
+            "tool_state": "{\"__job_resource\": \"{\\\"__current_case__\\\": 0, \\\"__job_resource__select\\\": \\\"no\\\"}\", \"polarity\": \"\\\"pos\\\"\", \"__rerun_remap_job_id__\": null, \"mtbls520\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": null}", 
+            "tool_version": "1.0", 
+            "type": "tool", 
+            "uuid": "1c757030-30f8-4f95-aa6a-a993c602af62", 
+            "workflow_outputs": []
+        }, 
+        "2": {
+            "annotation": "", 
+            "content_id": "mtbls520_04_preparations", 
+            "errors": null, 
+            "id": 2, 
+            "input_connections": {
+                "afile": {
+                    "id": 1, 
+                    "output_name": "afile"
+                }, 
+                "sfile": {
+                    "id": 1, 
+                    "output_name": "sfile"
+                }, 
+                "studyfolder": {
+                    "id": 1, 
+                    "output_name": "rawfiles"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool mtbls520_04_preparations", 
+                    "name": "sfile"
+                }, 
+                {
+                    "description": "runtime parameter for tool mtbls520_04_preparations", 
+                    "name": "afile"
+                }, 
+                {
+                    "description": "runtime parameter for tool mtbls520_04_preparations", 
+                    "name": "studyfolder"
+                }
+            ], 
+            "label": null, 
+            "name": "mtbls520_04_preparations", 
+            "outputs": [
+                {
+                    "name": "rdata", 
+                    "type": "rdata"
+                }
+            ], 
+            "position": {
+                "left": 800.5, 
+                "top": 252.5
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_04_preparations", 
+            "tool_state": "{\"polarity\": \"\\\"pos\\\"\", \"__page__\": null, \"__rerun_remap_job_id__\": null, \"studyfolder\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"sfile\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"afile\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__job_resource\": \"{\\\"__current_case__\\\": 0, \\\"__job_resource__select\\\": \\\"no\\\"}\"}", 
+            "tool_version": "1.0", 
+            "type": "tool", 
+            "uuid": "ee77c113-f9ed-457c-87d4-862e00619b9a", 
+            "workflow_outputs": []
+        }, 
+        "3": {
+            "annotation": "", 
+            "content_id": "mtbls520_05a_import_maf", 
+            "errors": null, 
+            "id": 3, 
+            "input_connections": {
+                "infile1": {
+                    "id": 2, 
+                    "output_name": "rdata"
+                }, 
+                "infile2": {
+                    "id": 1, 
+                    "output_name": "rawmaf"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool mtbls520_05a_import_maf", 
+                    "name": "infile2"
+                }, 
+                {
+                    "description": "runtime parameter for tool mtbls520_05a_import_maf", 
+                    "name": "infile1"
+                }
+            ], 
+            "label": null, 
+            "name": "mtbls520_05a_import_maf", 
+            "outputs": [
+                {
+                    "name": "rdata", 
+                    "type": "rdata"
+                }
+            ], 
+            "position": {
+                "left": 1060, 
+                "top": 253
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_05a_import_maf", 
+            "tool_state": "{\"__job_resource\": \"{\\\"__current_case__\\\": 0, \\\"__job_resource__select\\\": \\\"no\\\"}\", \"__page__\": null, \"__rerun_remap_job_id__\": null, \"infile2\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"infile1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "1.0", 
+            "type": "tool", 
+            "uuid": "8c73e627-615f-4827-be8f-d6e47c981768", 
+            "workflow_outputs": []
+        }, 
+        "4": {
+            "annotation": "", 
+            "content_id": "mtbls520_06_import_traits", 
+            "errors": null, 
+            "id": 4, 
+            "input_connections": {
+                "infile1": {
+                    "id": 3, 
+                    "output_name": "rdata"
+                }, 
+                "infile2": {
+                    "id": 1, 
+                    "output_name": "traitsfile"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool mtbls520_06_import_traits", 
+                    "name": "infile2"
+                }, 
+                {
+                    "description": "runtime parameter for tool mtbls520_06_import_traits", 
+                    "name": "infile1"
+                }
+            ], 
+            "label": null, 
+            "name": "mtbls520_06_import_traits", 
+            "outputs": [
+                {
+                    "name": "rdata", 
+                    "type": "rdata"
+                }
+            ], 
+            "position": {
+                "left": 1320.5, 
+                "top": 252
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_06_import_traits", 
+            "tool_state": "{\"__job_resource\": \"{\\\"__current_case__\\\": 0, \\\"__job_resource__select\\\": \\\"no\\\"}\", \"__page__\": null, \"__rerun_remap_job_id__\": null, \"infile2\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"infile1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.5", 
+            "type": "tool", 
+            "uuid": "f51ebebe-a309-40d7-a94e-e3261e657bba", 
+            "workflow_outputs": []
+        }, 
+        "5": {
+            "annotation": "", 
+            "content_id": "mtbls520_07_species_diversity", 
+            "errors": null, 
+            "id": 5, 
+            "input_connections": {
+                "infile1": {
+                    "id": 4, 
+                    "output_name": "rdata"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool mtbls520_07_species_diversity", 
+                    "name": "infile1"
+                }
+            ], 
+            "label": null, 
+            "name": "mtbls520_07_species_diversity", 
+            "outputs": [
+                {
+                    "name": "divcsv", 
+                    "type": "csv"
+                }, 
+                {
+                    "name": "rdata", 
+                    "type": "rdata"
+                }
+            ], 
+            "position": {
+                "left": 1581, 
+                "top": 251
+            }, 
+            "post_job_actions": {}, 
+            "tool_id": "mtbls520_07_species_diversity", 
+            "tool_state": "{\"__job_resource\": \"{\\\"__current_case__\\\": 0, \\\"__job_resource__select\\\": \\\"no\\\"}\", \"__page__\": null, \"__rerun_remap_job_id__\": null, \"infile1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "1.0", 
+            "type": "tool", 
+            "uuid": "3e7ee2f6-69b0-431b-b23e-21432210e13f", 
+            "workflow_outputs": []
+        }
+    }, 
+    "uuid": "a398a3c1-6953-4a59-b1c2-93452bfa0e6b"
+}

@@ -1,0 +1,18 @@
+## Galaxy server settins
+###########################################################################################
+# galaxy_url: "https://publicdev.phenomenal-h2020.eu"
+# galaxy_api_key: "f5a39ff87eb089eb8d51b04c6e4ba2a4"
+###########################################################################################
+enable_logger: False
+output_folder: "results"
+
+# workflow tests
+workflows:
+  # workflow test "metfrag"
+  metfrag:
+    file: "inputs/Galaxy-Workflow-MetFragWorkflow.ga"
+    inputs:
+      "xcms_find_peaks_input_1": "PE_PG_AutoMS_2-B_3_03_18583.mzML"
+      "msnbase_read_msms_input_1": "PE_PG_AutoMS_2-B_3_03_18583.mzML"
+    expected:
+      output: "results/output.zip"
