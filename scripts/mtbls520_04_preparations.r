@@ -31,7 +31,7 @@ library(RColorBrewer)    # For colors
 
 # ---------- Global variables ----------
 # Global variables for the experiment
-nSlaves <- 2
+nSlaves <- 1
 polarity <- "positive"
 rt_range <- c(20,1020)
 ppm <- 30
