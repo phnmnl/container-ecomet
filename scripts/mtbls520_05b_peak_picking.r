@@ -125,7 +125,7 @@ xcam_report <- getReducedPeaklist(peak_xcam, method="median", default.adduct.inf
 # Diff report
 diff_list <- xcam_report
 diff_list <- diff_list[order(diff_list$pcgroup, decreasing=FALSE),]
-diff_list$pcgroup <- paste("pos_", diff_list$pcgroup, sep="")
+diff_list$pcgroup <- paste(pol, "_", diff_list$pcgroup, sep="")
 
 # Create peak list
 peak_list <- xcam_report
@@ -137,7 +137,7 @@ peak_list <- peak_list[, which(colnames(peak_list) == mzml_names[1]) : which(col
 bina_list <- peak_list
 bina_list[is.na(bina_list)] <- 0
 bina_list[bina_list != 0] <- 1
-rownames(bina_list) <- paste("pos_", unique(pcgroup), sep="")
+rownames(bina_list) <- paste(pol, "_", unique(pcgroup), sep="")
 
 # Only unique compounds in one group and not the others
 uniq_list <- apply(X=bina_list, MARGIN=1,
@@ -159,7 +159,7 @@ xcam_report <- getReducedPeaklist(peak_xcam, method="median", default.adduct.inf
 # Diff report
 diff_list <- xcam_report
 diff_list <- diff_list[order(diff_list$pcgroup, decreasing=FALSE),]
-diff_list$pcgroup <- paste("pos_", diff_list$pcgroup, sep="")
+diff_list$pcgroup <- paste(pol, "_", diff_list$pcgroup, sep="")
 
 # Create feature list (with filled peaks)
 peak_list <- xcam_report
@@ -168,7 +168,7 @@ pcgroup <- peak_list$pcgroup
 peak_list <- peak_list[, which(colnames(peak_list) == mzml_names[1]) : which(colnames(peak_list) == mzml_names[length(mzml_names)])]
 
 feat_list <- peak_list
-rownames(feat_list) <- paste("pos_", unique(pcgroup), sep="")
+rownames(feat_list) <- paste(pol, "_", unique(pcgroup), sep="")
 
 # Cleanup values in peak list: Remove NAs, negative abundances, constant features (rows)
 feat_list[is.na(feat_list)] <- 0

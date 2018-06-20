@@ -2,7 +2,7 @@
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
 <tool id="mtbls520_24_seasons_nmds" name="mtbls520_24_seasons_nmds" version="1.0">
   <requirements>
-    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
+    <container type="docker">korseby/mtbls520</container>
   </requirements>
   <description>Perform Nonmetric Multidimensional Scaling (NMDS) for the seasons on the data from the MTBLS520 study.</description>
   <stdio>

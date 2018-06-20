@@ -2,7 +2,7 @@
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
 <tool id="mtbls520_17_ecology_splsda" name="mtbls520_17_ecology_splsda" version="1.0">
   <requirements>
-    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
+    <container type="docker">korseby/mtbls520</container>
   </requirements>
   <description>Perform sPLS-DA on the data with ecological characteristics from the MTBLS520 study.</description>
   <stdio>

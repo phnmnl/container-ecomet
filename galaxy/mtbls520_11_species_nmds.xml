@@ -2,7 +2,7 @@
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
 <tool id="mtbls520_11_species_nmds" name="mtbls520_11_species_nmds" version="1.0">
   <requirements>
-    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
+    <container type="docker">korseby/mtbls520</container>
   </requirements>
   <description>Perform NMDS on the data from the MTBLS520 study.</description>
   <stdio>

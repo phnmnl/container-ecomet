@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Proposed Tool Section: [Eco-Metabolomics]-->
-<tool id="mtbls520_08a_species_shannon" name="mtbls520_08a_species_shannon" version="1.0">
+<tool id="mtbls520_08a_species_shannon" name="mtbls520_08a_species_shannon" version="1.1">
   <requirements>
-    <container type="docker">container-registry.phenomenal-h2020.eu/phnmnl/ecomet</container>
+    <container type="docker">korseby/mtbls520</container>
   </requirements>
-  <description>Calculate Shannon diversity index from the MTBLS520 study.</description>
+  <description>Calculate Shannon diversity index for the species from the MTBLS520 study.</description>
   <stdio>
     <regex match="" source="stderr" level="warning" description="R messages" />
     <exit_code range="1:" level="fatal" description="Tool error" />
@@ -19,12 +19,45 @@ mtbls520_08a_species_shannon.r $infile1 $outfile1;
   <outputs>
     <data name="outfile1" type="data" format="pdf" label="Species Shannon diversity index" />
   </outputs>
-  <help><![CDATA[
-This is the MTBLS520 study.
-The study will be published soon. This code is work-in-progress. Do not redistribute unless study published.
-Copyright (C) 2017 Kristian Peters - IPB Halle
-----
-More updates soon
-  ]]></help>
+  <help>
+==================================
+MTBLS520 Eco-Metabolomics workflow
+==================================
+
+This is the computational workflow to study the seasonal variation of secondary metabolites in nine different bryophytes.
+
+Module
+	| Species Shannon index
+	|
+
+Description
+	| Calculate Shannon diversity index for the species
+	|
+
+-----
+Input
+-----
+
+Input Rdata
+	| Rdata file
+	|
+
+------
+Output
+------
+
+Species Shannon diversity index
+	| PDF plot
+	|
+
+---------------------------------------------------
+
+.. class:: infomark
+
+**Authors**
+
+For updates and documentation, please visit **https://github.com/korseby/container-mtbls520** or contact **Kristian Peters (kpeters@ipb-halle.de)**.
+
+  </help>
 </tool>
 

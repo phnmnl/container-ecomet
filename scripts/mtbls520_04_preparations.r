@@ -14,9 +14,9 @@ options(stringAsfactors=FALSE, useFancyQuotes=FALSE)
 
 # Take in trailing command line arguments
 args <- commandArgs(trailingOnly=TRUE)
-if (length(args) < 1) {
+if (length(args) < 2) {
 	print("Error! No or not enough arguments given.")
-	print("Usage: $0 output.rdata")
+	print("Usage: $0 polarity output.rdata")
 	quit(save="no", status=1, runLast=FALSE)
 }
 
@@ -31,8 +31,9 @@ library(RColorBrewer)    # For colors
 
 # ---------- Global variables ----------
 # Global variables for the experiment
-nSlaves <- 1
-polarity <- "positive"
+nSlaves <- detectCores(all.tests=FALSE, logical=TRUE)
+polarity <- args[1]
+pol <- substr(x=polarity, start=1, stop=3)
 rt_range <- c(20,1020)
 ppm <- 30
 peakwidth <- c(5,12)
@@ -99,10 +100,9 @@ mzml_files <- list.files(mzml_dir, pattern="*.mzML", recursive=T, full.names=T)
 mzml_files <- mzml_files[grep("MM8", mzml_files, invert=T)]
 mzml_files <- mzml_files[grep("ACN", mzml_files, invert=T)]
 mzml_files <- mzml_files[grep("extrBuff", mzml_files, invert=T)]
-mzml_files <- mzml_files[grep("_neg", mzml_files, invert=T)]
 
 # Filter for polarity specific files
-mzml_files <- mzml_files[grep("neg", mzml_files, invert=T)]
+mzml_files <- mzml_files[grep(pol, mzml_files, invert=F)]
 
 # Basenames of files without path and without extension
 mzml_names <- gsub('(.*)\\..*', '\\1', gsub('( |-|,)', '.', basename(mzml_files)))
@@ -179,5 +179,5 @@ for (i in 1:length(mzml_files)) {
 
 
 # ---------- Save R environment ----------
-save.image(file=args[1])
+save.image(file=args[2])
 

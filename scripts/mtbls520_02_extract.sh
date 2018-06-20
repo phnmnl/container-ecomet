@@ -10,6 +10,7 @@ fi
 # Input parameters
 INPUT="${1}"
 POLARITY="${2}"
+POL="$(echo ${2} | cut -c 1-3)"
 
 # Output parameters
 STUDY_FILES="${3}"
@@ -37,11 +38,11 @@ touch ${A_FILE} || exit 9
 touch ${S_FILE} || exit 10
 
 # Move files to their places
-mv output/${POLARITY}_MM8_*.mzML ${QC_FILES}/
-mv output/${POLARITY}_[0-9]*.mzML ${STUDY_FILES}/
-mv output/m_bryos_metabolite_profiling_mass_spectrometry_${POLARITY}itive_mode.maf.tsv ${STUDY_MAF}
-mv output/m_bryos_quality_control_mass_spectrometry_${POLARITY}itive_mode.maf.tsv ${QC_MAF}
-mv output/a_bryos_metabolite_profiling_mass_spectrometry_${POLARITY}itive_mode.txt ${A_FILE}
+mv output/${POL}_MM8_*.mzML ${QC_FILES}/
+mv output/${POL}_[0-9]*.mzML ${STUDY_FILES}/
+mv output/m_bryos_metabolite_profiling_mass_spectrometry_${POLARITY}_mode.maf.tsv ${STUDY_MAF}
+mv output/m_bryos_quality_control_mass_spectrometry_${POLARITY}_mode.maf.tsv ${QC_MAF}
+mv output/a_bryos_metabolite_profiling_mass_spectrometry_${POLARITY}_mode.txt ${A_FILE}
 mv output/s_bryos.txt ${S_FILE}
 mv output/m_characteristics.csv ${TRAITS_FILE} 
 mv output/m_moss_phylo.tre ${PHYLO_FILE}

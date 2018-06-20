@@ -72,8 +72,14 @@ feat_oclust <- feat_hclust
 feat_oclust$merge <- feat_opti$merge
 feat_oclust$order <- feat_opti$order
 
-# Manually rotate "Polstr" + "Plaund" branches
-feat_oclust <- reorder(feat_oclust, c(1, 2, 4, 5, 3, 9, 6, 8, 7))
+# pos-mode: Manually rotate "Polstr" + "Plaund" branches
+if (polarity == "positive") {
+	feat_oclust <- reorder(feat_oclust, c(1, 2, 4, 5, 3, 9, 6, 8, 7))
+}
+# neg-mode: Manually rotate branches
+if (polarity == "negative") {
+	feat_oclust <- reorder(feat_oclust, c(1, 2, 3, 6, 4, 8, 7, 5, 9))
+}
 
 
 # Procrustes analysis
@@ -99,7 +105,7 @@ pdf(args[4], encoding="ISOLatin1", pointsize=12, width=8, height=5, family="Helv
 par(mfrow=c(1,2), mar=c(1,1,2,1), cex=1.0)
 plot(phylo_tree, type="phylogram", direction="rightwards", x.lim=c(0,11), label.offset=0.4, use.edge.length=TRUE, show.tip.label=TRUE, tip.color=species_colors[phylo_index], font=2, main="")
 mtext(text="(a)", adj=0, line=0.5, font=2, cex=1.2)
-plot(as.phylo(feat_oclust), type="phylogram", direction="leftwards", x.lim=c(0,0.30), label.offset=0.01, use.edge.length=TRUE, show.tip.label=TRUE, tip.color=species_colors[phylo_index], font=2, main="")
+plot(as.phylo(feat_oclust), type="phylogram", direction="leftwards", x.lim=c(0,0.5), label.offset=0.01, use.edge.length=TRUE, show.tip.label=TRUE, tip.color=species_colors[phylo_index], font=2, main="")
 mtext(text="(b)", adj=0, line=0.5, font=2, cex=1.2)
 dev.off()
 
