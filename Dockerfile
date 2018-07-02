@@ -12,25 +12,25 @@ LABEL license="https://github.com/phnmnl/container-midcor/blob/master/License.tx
 LABEL tags="Metabolomics,Ecology"
 
 # Install packages for compilation
-RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install apt-transport-https && \
-    make && \
-    gcc && \
-    gfortran && \
-    g++ && \
-    libnetcdf-dev && \
-    libxml2-dev && \
-    libblas-dev && \
-    liblapack-dev && \
-    libssl-dev && \
-    pkg-config && \
-    git && \
-    xorg && \
-    xorg-dev && \
-    libglu1-mesa-dev && \
-    libgl1-mesa-dev && \
-    wget && \
-    zip && \
-    unzip && \
+RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install apt-transport-https \
+    make \
+    gcc \
+    gfortran \
+    g++ \
+    libnetcdf-dev \
+    libxml2-dev \
+    libblas-dev \
+    liblapack-dev \
+    libssl-dev \
+    pkg-config \
+    git \
+    xorg \
+    xorg-dev \
+    libglu1-mesa-dev \
+    libgl1-mesa-dev \
+    wget \
+    zip \
+    unzip \
     perl-base && \
     R -e 'install.packages(c("irlba","igraph","XML","intervals"), repos="https://mirrors.ebi.ac.uk/CRAN/")' && \
     R -e 'install.packages("devtools", repos="https://mirrors.ebi.ac.uk/CRAN/")' && \
