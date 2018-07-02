@@ -13,8 +13,26 @@ LABEL tags="Metabolomics,Ecology"
 
 # Install packages for compilation
 RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install apt-transport-https && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install make gcc gfortran g++ libnetcdf-dev libxml2-dev libblas-dev liblapack-dev libssl-dev pkg-config git xorg xorg-dev libglu1-mesa-dev libgl1-mesa-dev wget zip unzip perl-base
-RUN R -e 'install.packages(c("irlba","igraph","XML","intervals"), repos="https://mirrors.ebi.ac.uk/CRAN/")' && \
+    make && \
+    gcc && \
+    gfortran && \
+    g++ && \
+    libnetcdf-dev && \
+    libxml2-dev && \
+    libblas-dev && \
+    liblapack-dev && \
+    libssl-dev && \
+    pkg-config && \
+    git && \
+    xorg && \
+    xorg-dev && \
+    libglu1-mesa-dev && \
+    libgl1-mesa-dev && \
+    wget && \
+    zip && \
+    unzip && \
+    perl-base && \
+    R -e 'install.packages(c("irlba","igraph","XML","intervals"), repos="https://mirrors.ebi.ac.uk/CRAN/")' && \
     R -e 'install.packages("devtools", repos="https://mirrors.ebi.ac.uk/CRAN/")' && \
     R -e 'library(BiocInstaller); biocLite("multtest")' && \
     R -e 'install.packages(c("RColorBrewer","Hmisc","gplots","multcomp","rgl","mixOmics","vegan","cba","nlme","ape","pvclust","dendextend","phangorn","VennDiagram"), repos="https://mirrors.ebi.ac.uk/CRAN/")'
