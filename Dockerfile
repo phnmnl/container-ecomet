@@ -32,10 +32,10 @@ RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-
     zip \
     unzip \
     perl-base && \
-    R -e 'install.packages(c("irlba","igraph","XML","intervals"), repos="https://mirrors.ebi.ac.uk/CRAN/")' && \
-    R -e 'install.packages("devtools", repos="https://mirrors.ebi.ac.uk/CRAN/")' && \
+    R -e 'install.packages(c("irlba","igraph","XML","intervals"), repos="https://cran.r-project.org/")' && \
+    R -e 'install.packages("devtools", repos="https://cran.r-project.org/")' && \
     R -e 'library(BiocInstaller); biocLite("multtest")' && \
-    R -e 'install.packages(c("RColorBrewer","Hmisc","gplots","multcomp","rgl","mixOmics","vegan","cba","nlme","ape","pvclust","dendextend","phangorn","VennDiagram"), repos="https://mirrors.ebi.ac.uk/CRAN/")'
+    R -e 'install.packages(c("RColorBrewer","Hmisc","gplots","multcomp","rgl","mixOmics","vegan","cba","nlme","ape","pvclust","dendextend","phangorn","VennDiagram"), repos="https://cran.r-project.org/")'
 
 RUN apt-get -y clean && apt-get -y autoremove && rm -rf /var/lib/{cache,log}/ /tmp/* /var/tmp/*
 
