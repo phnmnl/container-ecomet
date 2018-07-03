@@ -11,31 +11,26 @@ LABEL documentation="https://github.com/phnmnl/container-ecomet/blob/master/READ
 LABEL license="https://github.com/phnmnl/container-midcor/blob/master/License.txt"
 LABEL tags="Metabolomics,Ecology"
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN \
-     apt-get -y update \
-  && apt-get -y --no-install-recommends \
-             install \
-                apt-transport-https \
-                g++ \
-                gcc \
-                gfortran \
-                git \
-                libblas3 \
-                libblas-dev \
-                liblapack-dev \
-                libnetcdf-dev \
-                libssl1.0.0 \
-                libssl-dev \
-                libxml2 \
-                libxml2-dev \
-                make \
-                perl-base \
-                pkg-config \
-                unzip \
-                wget \
-                zip \
+RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install apt-transport-https \
+    make \
+    gcc \
+    gfortran \
+    g++ \
+    libnetcdf-dev \
+    libxml2-dev \
+    libblas-dev \
+    liblapack-dev \
+    libssl-dev \
+    pkg-config \
+    git \
+    xorg \
+    xorg-dev \
+    libglu1-mesa-dev \
+    libgl1-mesa-dev \
+    wget \
+    zip \
+    unzip \
+    perl-base && \
   && R -e 'install.packages(c("irlba","igraph","XML","intervals"), repos="https://mirrors.ebi.ac.uk/CRAN/")' \
   && R -e 'install.packages("devtools", repos="https://mirrors.ebi.ac.uk/CRAN/")' \
   && R -e 'library(BiocInstaller); biocLite("multtest")' \
@@ -44,12 +39,6 @@ RUN \
                 g++ \
                 gcc \
                 gfortran \
-                git \
-                libblas-dev \
-                libssl-dev \
-                libxml2-dev \
-                make \
-                pkg-config \
   && apt-get -y clean && apt-get -y autoremove && rm -rf /var/lib/{cache,log}/ /tmp/* /var/tmp/*
 
 # Add scripts to container
