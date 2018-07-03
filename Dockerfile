@@ -11,7 +11,6 @@ LABEL documentation="https://github.com/phnmnl/container-ecomet/blob/master/READ
 LABEL license="https://github.com/phnmnl/container-midcor/blob/master/License.txt"
 LABEL tags="Metabolomics,Ecology"
 
-# Install packages for compilation
 RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install apt-transport-https \
     make \
     gcc \
@@ -35,9 +34,12 @@ RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-
     R -e 'install.packages(c("irlba","igraph","XML","intervals"), repos="https://cran.r-project.org/")' && \
     R -e 'install.packages("devtools", repos="https://cran.r-project.org/")' && \
     R -e 'library(BiocInstaller); biocLite("multtest")' && \
-    R -e 'install.packages(c("RColorBrewer","Hmisc","gplots","multcomp","rgl","mixOmics","vegan","cba","nlme","ape","pvclust","dendextend","phangorn","VennDiagram"), repos="https://cran.r-project.org/")'
-
-RUN apt-get -y clean && apt-get -y autoremove && rm -rf /var/lib/{cache,log}/ /tmp/* /var/tmp/*
+    R -e 'install.packages(c("RColorBrewer","Hmisc","gplots","multcomp","rgl","mixOmics","vegan","cba","nlme","ape","pvclust","dendextend","phangorn","VennDiagram"), repos="https://cran.r-project.org/")' && \
+    apt-get -y remove --purge \
+                g++ \
+                gcc \
+                gfortran && \
+    apt-get -y clean && apt-get -y autoremove && rm -rf /var/lib/{cache,log}/ /tmp/* /var/tmp/*
 
 # Add scripts to container
 ADD scripts/* /usr/local/bin/
