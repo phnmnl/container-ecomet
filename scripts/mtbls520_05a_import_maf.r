@@ -52,7 +52,7 @@ diff_list$pcgroup <- paste(pol, "_", diff_list$pcgroup, sep="")
 peak_list <- xcam_report
 peak_list <- peak_list[order(peak_list$pcgroup, decreasing=FALSE),]
 pcgroup <- peak_list$pcgroup
-peak_list <- peak_list[, which(colnames(peak_list) == mzml_names[1]) : which(colnames(peak_list) == mzml_names[length(mzml_names)])]
+peak_list <- peak_list[, which(colnames(peak_list) %in% mzml_names)]
 
 # Create single 0/1 matrix
 bina_list <- peak_list
@@ -92,7 +92,7 @@ diff_list$pcgroup <- paste(pol, "_", diff_list$pcgroup, sep="")
 peak_list <- xcam_report
 peak_list <- peak_list[order(peak_list$pcgroup, decreasing=FALSE),]
 pcgroup <- peak_list$pcgroup
-peak_list <- peak_list[, which(colnames(peak_list) == mzml_names[1]) : which(colnames(peak_list) == mzml_names[length(mzml_names)])]
+peak_list <- peak_list[, which(colnames(peak_list) %in% mzml_names)]
 
 feat_list <- peak_list
 rownames(feat_list) <- paste(pol, "_", unique(pcgroup), sep="")
