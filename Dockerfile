@@ -4,7 +4,7 @@ MAINTAINER PhenoMeNal-H2020 Project (phenomenal-h2020-users@googlegroups.com)
 
 LABEL software="Eco-Metabolomics"
 LABEL software.version="1.1"
-LABEL version="0.1"
+LABEL version="0.3"
 LABEL Description="Eco-Metabolomics: Process ecological metabolomics data"
 LABEL website="https://github.com/phnmnl/container-ecomet"
 LABEL documentation="https://github.com/phnmnl/container-ecomet/blob/master/README.md"
